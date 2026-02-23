@@ -1,16 +1,19 @@
 import Header from "./components/header"
 import Sidebar from "./components/sidebar"
-import FileExplorer from "./components/fileExplorer"
-import Properties from "./components/Properties"
+// import FileExplorer from "./components/fileExplorer"
+// import Properties from "./components/Properties"
 
 function App() {
 
   return (
     <>
-    <Header/>
-    <Sidebar/>
+    <div className="main bg-[#080A10] h-screen">
+      <Header/>
+      <Sidebar/>
+    </div>
+    {/* <Sidebar/>
     <FileExplorer/>
-    <Properties/>
+    <Properties/> */}
     </>
   )
 }
