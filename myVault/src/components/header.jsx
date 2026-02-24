@@ -14,22 +14,13 @@ const Header = () => {
         <div className="flex items-center gap-2.5 shrink-0">
           <img src={Lg} alt="SecureVault logo" className="w-8 h-8 object-contain" />
           <div className="leading-tight">
-            <h1 className="text-white text-sm font-semibold">SecureVault</h1>
+            <h1 className="text-white text-[20px] font-semibold">SecureVault</h1>
             <p className="text-[#00DCC8] text-[10px] uppercase tracking-widest">Enterprise</p>
           </div>
         </div>
 
-        
-        <div className="hidden md:flex items-center gap-1 text-xs">
-          <span className="text-white/40">vault</span>
-          <span className="text-white/20">/</span>
-          <a className="text-white/40 hover:text-white/80 cursor-pointer">01_Legal_Department</a>
-          <span className="text-white/20">/</span>
-          <span className="text-[#00DCC8] hover:text-[#00DCC8]/80 cursor-pointer">Active_Cases</span>
-        </div>
-
-
-        <div className="hidden sm:flex items-center gap-2 border border-white/10 rounded-md px-3 py-1.5 w-56">
+      
+        <div className="hidden sm:flex items-center gap-2 border border-white/10 w-[50%] rounded-md px-4 py-1.5">
           <Search size={13} className="text-white/40 shrink-0" />
           <input
             type="text"
