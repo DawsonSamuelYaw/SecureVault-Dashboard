@@ -43,6 +43,7 @@ function App() {
       <Header
         onSearch={setSearchTerm}
         onMenuToggle={() => setShowSidebar(o => !o)}
+        showSidebar={showSidebar}
       />
 
       <div className="flex flex-1 overflow-hidden relative">
@@ -77,6 +78,7 @@ function App() {
           )}
         </div>
 
+        {/* Properties — full screen on mobile, side panel on desktop */}
         {selectedFile && (
           <div className="fixed inset-0 z-30 md:relative md:inset-auto md:z-auto md:flex md:shrink-0">
             <Properties file={selectedFile} onClose={() => setSelectedFile(null)} />
