@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Lg from '/logo_vault.png'
-import { Search, ArrowUpDown, LayoutGrid, Settings2, Menu, X } from 'lucide-react'
+import { Search, ArrowUp, LayoutGrid, Settings, Menu, X } from 'lucide-react'
 
 // Header receives onSearch from App.jsx so the search term
 // can be shared with FileExplorer for filtering
@@ -35,13 +35,13 @@ const Header = ({ onSearch }) => {
         {/* Action buttons */}
         <div className="hidden sm:flex items-center gap-1.5">
           <button className="border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 hover:border-white/20 transition-colors">
-            <ArrowUpDown size={14} />
+            <ArrowUp size={14} />
           </button>
           <button className="border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 hover:border-white/20 transition-colors">
             <LayoutGrid size={14} />
           </button>
           <button className="border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 hover:border-white/20 transition-colors">
-            <Settings2 size={14} />
+            <Settings size={14} />
           </button>
         </div>
          <div className="flex items-center gap-2.5 px-2 py-2 rounded-md border border-white/10">

@@ -128,7 +128,6 @@ const FileExplorer = ({ onSelect, searchTerm = '' }) => {
   }, [])
 
   function handleToggle(id) {
-    // Don't toggle folders while searching — results should stay expanded
     if (!searchTerm) {
       setOpenMap(prev => ({ ...prev, [id]: !prev[id] }))
     }
