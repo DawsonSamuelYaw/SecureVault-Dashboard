@@ -37,6 +37,7 @@ No UI libraries. Every component was written from scratch.
 ```
 src/
 ├── components/
+│   ├── data.json        — nested folder/file tree data
 │   ├── header.jsx        — search bar, action buttons, user card
 │   ├── sidebar.jsx       — left nav (My Vault, Shared, Recent, Trash, Security)
 │   ├── fileExplorer.jsx  — recursive file tree with keyboard navigation
@@ -44,7 +45,7 @@ src/
 ├── App.jsx               — root component, holds shared state
 └── main.jsx
 public/
-└── data.json             — nested folder/file tree data
+└── logo_vault.png        - logo
 ```
 
 ---
