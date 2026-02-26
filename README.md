@@ -53,7 +53,7 @@ public/
 
 ### Recursive File Tree
 
-The file tree is built around a component called `TreeNode` that renders itself. When it hits a folder that's open, it maps over the folder's children and renders a new `TreeNode` for each one — passing `depth + 1` so indentation increases automatically. Files have no children so the recursion stops naturally. Closed folders also stop it because their children never get rendered.
+The file tree is built around a component called `TreeNode` that renders itself. When it hits a folder that's open, it maps over the folder's children and renders a new `TreeNode` for each one, passing `depth + 1` so indentation increases automatically. Files have no children so the recursion stops naturally. Closed folders also stop it because their children never get rendered.
 
 ```jsx
 {isFolder && isOpen && node.children?.map(child => (
@@ -61,13 +61,13 @@ The file tree is built around a component called `TreeNode` that renders itself.
 ))}
 ```
 
-The `openMap` state lives in `FileExplorer` rather than inside each `TreeNode`. This matters because keyboard navigation needs to open and close folders from outside the node — something that would be impossible if each node managed its own state privately.
+The `openMap` state lives in `FileExplorer` rather than inside each `TreeNode`. This matters because keyboard navigation needs to open and close folders from outside the node, something that would be impossible if each node managed its own state privately.
 
 ### Keyboard Navigation
 
 The container div gets focused on mount via `useEffect`, so the keyboard is ready immediately without any clicks.
 
-A helper called `getVisibleNodes` walks the tree and returns a flat array of only the nodes currently on screen — closed folder contents are excluded. Arrow navigation works by finding the current node's index in this array and moving to `index ± 1`.
+A helper called `getVisibleNodes` walks the tree and returns a flat array of only the nodes currently on screen, closed folder contents are excluded. Arrow navigation works by finding the current node's index in this array and moving to `index ± 1`.
 
 | Key | Action |
 |-----|--------|
@@ -79,7 +79,7 @@ A helper called `getVisibleNodes` walks the tree and returns a flat array of onl
 
 ### Search & Filter
 
-The search input is in the Header. The search term is lifted to `App.jsx` and passed down to `FileExplorer` — standard React pattern for shared state.
+The search input is in the Header. The search term is lifted to `App.jsx` and passed down to `FileExplorer`, standard React pattern for shared state.
 
 Filtering uses a recursive helper called `nodeMatchesSearch`. It checks if a node's name contains the search term, then checks all descendants using `.some()`. This keeps parent folders visible as long as any child anywhere in the subtree matches — so files buried inside nested folders are always reachable.
 
@@ -97,4 +97,4 @@ function nodeMatchesSearch(node, term) {
 
 ### Navigation Pages
 
-The sidebar has two sections — **Navigation** (My Vault, Shared, Recent, Trash) and **Security** (Activity Log, Encryption). Clicking **My Vault** loads the file explorer. All other pages currently show an under construction screen.
+The sidebar has two sections, **Navigation** (My Vault, Shared, Recent, Trash) and **Security** (Activity Log, Encryption). Clicking **My Vault** loads the file explorer. All other pages currently show an under construction screen.
