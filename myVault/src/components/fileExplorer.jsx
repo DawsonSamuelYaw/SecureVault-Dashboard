@@ -2,13 +2,12 @@ import React, { useState, useRef, useEffect } from 'react'
 import { ChevronRight, ChevronDown, Folder, FileText } from 'lucide-react'
 import Tree from './data.json'
 
-// Pre-defined padding classes per depth level — Tailwind can't build dynamic class names at runtime
 const depthPadding = {
   0: 'pl-0', 1: 'pl-4', 2: 'pl-8',
   3: 'pl-12', 4: 'pl-16', 5: 'pl-20',
 }
 
-// Returns a flat list of every node currently visible in the tree
+
 // Used by keyboard navigation to move between nodes with arrow keys
 function getVisibleNodes(nodes, openMap) {
   const visible = []
@@ -117,12 +116,11 @@ const TreeNode = ({ node, depth = 0, path = '', onSelect, selectedId, openMap, o
 }
 
 const FileExplorer = ({ onSelect, searchTerm = '' }) => {
-  const [openMap, setOpenMap] = useState({})      // tracks which folders are open
-  const [selectedId, setSelectedId] = useState(null)  // clicked/entered file
-  const [focusedId, setFocusedId] = useState(Tree[0]?.id ?? null)  // keyboard cursor
+  const [openMap, setOpenMap] = useState({})
+  const [selectedId, setSelectedId] = useState(null)
+  const [focusedId, setFocusedId] = useState(Tree[0]?.id ?? null)
   const containerRef = useRef(null)
 
-  // Auto-focus the container on mount so keyboard navigation works immediately
   useEffect(() => {
     containerRef.current?.focus()
   }, [])
@@ -158,13 +156,11 @@ const FileExplorer = ({ onSelect, searchTerm = '' }) => {
       if (prev) setFocusedId(prev.id)
     }
 
-    // ArrowRight expands a closed folder
     if (e.key === 'ArrowRight' && current.type === 'folder' && !openMap[current.id]) {
       e.preventDefault()
       setOpenMap(prev => ({ ...prev, [current.id]: true }))
     }
 
-    // ArrowLeft collapses an open folder
     if (e.key === 'ArrowLeft' && current.type === 'folder' && openMap[current.id]) {
       e.preventDefault()
       setOpenMap(prev => ({ ...prev, [current.id]: false }))
@@ -186,13 +182,12 @@ const FileExplorer = ({ onSelect, searchTerm = '' }) => {
       ref={containerRef}
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      className="font-[poppins] bg-[#050810] min-h-screen flex-1 p-4 overflow-y-auto outline-none"
+      className="font-[poppins] bg-[#050810] flex-1 p-4 overflow-y-auto outline-none min-h-0"
     >
       <p className="text-white/25 text-[10px] uppercase tracking-widest px-3 mb-3">
         File Explorer
       </p>
 
-      {/* Empty state for search */}
       {searchTerm && !Tree.some(node => nodeMatchesSearch(node, searchTerm)) && (
         <p className="text-white/25 text-xs px-3">No results for "{searchTerm}"</p>
       )}

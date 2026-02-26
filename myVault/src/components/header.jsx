@@ -2,23 +2,38 @@ import React, { useState } from 'react'
 import Lg from '/logo_vault.png'
 import { Search, ArrowUp, LayoutGrid, Settings, Menu, X } from 'lucide-react'
 
-const Header = ({ onSearch }) => {
+const Header = ({ onSearch, onMenuToggle }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  function handleMenuClick() {
+    setMenuOpen(o => !o)
+    onMenuToggle?.()
+  }
+
   return (
-    <div className="font-[poppins] border-b border-white/10">
+    <div className="font-[poppins] border-b border-white/10 shrink-0">
 
-      <div className="flex items-center justify-between gap-4 px-6 py-4">
+      <div className="flex items-center justify-center gap-3 px-4 py-3 sm:px-6 sm:py-4">
 
-        <div className="flex items-center gap-2.5 shrink-0">
-          <img src={Lg} alt="SecureVault logo" className="w-8 h-8 object-contain" />
+        {/* Hamburger — mobile only, leftmost */}
+        <button
+          className="sm:hidden border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 transition-colors shrink-0"
+          onClick={handleMenuClick}
+        >
+          {menuOpen ? <X size={16} /> : <Menu size={16} />}
+        </button>
+
+        {/* Logo */}
+        <div className="flex items-center gap-2 shrink-0">
+          <img src={Lg} alt="SecureVault logo" className="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
           <div className="leading-tight">
-            <h1 className="text-white text-[20px] font-semibold">SecureVault</h1>
-            <p className="text-[#00DCC8] text-[10px] uppercase tracking-widest">Enterprise</p>
+            <h1 className="text-white text-[16px] sm:text-[20px] font-semibold">SecureVault</h1>
+            <p className="text-[#00DCC8] text-[9px] sm:text-[10px] uppercase tracking-widest">Enterprise</p>
           </div>
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 border border-white/10 w-[50%] rounded-md px-4 py-1.5">
+
+        <div className="hidden sm:flex items-center gap-2 border ml-8 border-white/10 flex-1 max-w-[50%] rounded-md px-4 py-1.5">
           <Search size={13} className="text-white/40 shrink-0" />
           <input
             type="text"
@@ -39,29 +54,24 @@ const Header = ({ onSearch }) => {
             <Settings size={14} />
           </button>
         </div>
-         <div className="flex items-center gap-2.5 px-2 py-2 rounded-md border border-white/10">
-        <div className="w-7 h-7 rounded-full bg-[#00DCC8]/20 border border-[#00DCC8]/30 flex items-center justify-center">
-          <span className="text-[#00DCC8] text-[10px] font-semibold">SD</span>
+
+
+        <div className="flex items-center gap-2 px-2 py-1.5 rounded-md border border-white/10 ml-auto shrink-0">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#00DCC8]/20 border border-[#00DCC8]/30 flex items-center justify-center shrink-0">
+            <span className="text-[#00DCC8] text-[9px] sm:text-[10px] font-semibold">SD</span>
+          </div>
+
+          <div className="hidden sm:block leading-tight overflow-hidden">
+            <p className="text-white text-xs font-medium truncate">S. Dawson</p>
+            <p className="text-white/30 text-[10px] truncate">Senior_Counsel</p>
+          </div>
         </div>
 
-        <div className="leading-tight overflow-hidden">
-          <p className="text-white text-xs font-medium truncate">S. Dawson</p>
-          <p className="text-white/30 text-[10px] truncate">Senior_Counsel</p>
-        </div>
       </div>
 
-        <button
-          className="sm:hidden border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 transition-colors ml-auto"
-          onClick={() => setMenuOpen(o => !o)}
-        >
-          {menuOpen ? <X size={16} /> : <Menu size={16} />}
-        </button>
-      </div>
-
-
+      {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="sm:hidden flex flex-col gap-3 px-6 pb-4 border-t border-white/10">
-
+        <div className="sm:hidden flex flex-col gap-3 px-4 pb-4 border-t border-white/10">
           <div className="flex items-center gap-2 border border-white/10 rounded-md px-3 py-2 mt-3">
             <Search size={13} className="text-white/40 shrink-0" />
             <input

@@ -39,34 +39,46 @@ function App() {
   }
 
   return (
-    <div className="bg-[#080A10] h-screen flex flex-col">
-      <Header onSearch={setSearchTerm} onMenuToggle={() => setShowSidebar(o => !o)} />
+    <div className="bg-[#080A10] h-screen w-screen overflow-hidden flex flex-col">
+      <Header
+        onSearch={setSearchTerm}
+        onMenuToggle={() => setShowSidebar(o => !o)}
+      />
 
       <div className="flex flex-1 overflow-hidden relative">
 
-        <div className={`absolute inset-y-0 left-0 z-20 md:relative md:flex ${showSidebar ? 'flex' : 'hidden'}`}>
-          <Sidebar
-            activePage={activePage}
-            onNavigate={handleNavigate}
-            onClose={() => setShowSidebar(false)}
-          />
-        </div>
-
         {showSidebar && (
           <div
-            className="fixed inset-0 z-10 bg-black/50 md:hidden"
+            className="fixed inset-0 z-10 bg-black/60 md:hidden"
             onClick={() => setShowSidebar(false)}
           />
         )}
 
-        {activePage === 'vault' ? (
-          <FileExplorer onSelect={handleFileSelect} searchTerm={searchTerm} />
-        ) : (
-          <UnderConstruction label={PAGE_LABELS[activePage] ?? 'This page'} />
-        )}
+        {/* Sidebar */}
+        <div className={`
+          fixed inset-y-0 left-0 z-20 md:relative md:flex md:inset-auto
+          ${showSidebar ? 'flex' : 'hidden'}
+        `}>
+          <Sidebar
+            activePage={activePage}
+            onNavigate={(page) => {
+              handleNavigate(page)
+              setShowSidebar(false)
+            }}
+          />
+        </div>
+
+        {/* Main content */}
+        <div className="flex flex-1 overflow-hidden min-w-0">
+          {activePage === 'vault' ? (
+            <FileExplorer onSelect={handleFileSelect} searchTerm={searchTerm} />
+          ) : (
+            <UnderConstruction label={PAGE_LABELS[activePage] ?? 'This page'} />
+          )}
+        </div>
 
         {selectedFile && (
-          <div className="absolute inset-0 z-30 md:relative md:inset-auto md:z-auto">
+          <div className="fixed inset-0 z-30 md:relative md:inset-auto md:z-auto md:flex md:shrink-0">
             <Properties file={selectedFile} onClose={() => setSelectedFile(null)} />
           </div>
         )}
