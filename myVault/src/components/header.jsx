@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import Lg from '/logo_vault.png'
 import { Search, ArrowUp, LayoutGrid, Settings, Menu, X } from 'lucide-react'
 
-// Header receives onSearch from App.jsx so the search term
-// can be shared with FileExplorer for filtering
 const Header = ({ onSearch }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -12,7 +10,6 @@ const Header = ({ onSearch }) => {
 
       <div className="flex items-center justify-between gap-4 px-6 py-4">
 
-        {/* Logo */}
         <div className="flex items-center gap-2.5 shrink-0">
           <img src={Lg} alt="SecureVault logo" className="w-8 h-8 object-contain" />
           <div className="leading-tight">
@@ -21,7 +18,6 @@ const Header = ({ onSearch }) => {
           </div>
         </div>
 
-        {/* Search bar — calls onSearch every time the input changes */}
         <div className="hidden sm:flex items-center gap-2 border border-white/10 w-[50%] rounded-md px-4 py-1.5">
           <Search size={13} className="text-white/40 shrink-0" />
           <input
@@ -32,7 +28,6 @@ const Header = ({ onSearch }) => {
           />
         </div>
 
-        {/* Action buttons */}
         <div className="hidden sm:flex items-center gap-1.5">
           <button className="border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 hover:border-white/20 transition-colors">
             <ArrowUp size={14} />
@@ -55,7 +50,6 @@ const Header = ({ onSearch }) => {
         </div>
       </div>
 
-        {/* Hamburger — mobile only */}
         <button
           className="sm:hidden border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 transition-colors ml-auto"
           onClick={() => setMenuOpen(o => !o)}
@@ -64,11 +58,10 @@ const Header = ({ onSearch }) => {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+
       {menuOpen && (
         <div className="sm:hidden flex flex-col gap-3 px-6 pb-4 border-t border-white/10">
 
-          {/* Mobile search — same onSearch prop */}
           <div className="flex items-center gap-2 border border-white/10 rounded-md px-3 py-2 mt-3">
             <Search size={13} className="text-white/40 shrink-0" />
             <input
@@ -81,13 +74,13 @@ const Header = ({ onSearch }) => {
 
           <div className="flex items-center gap-2">
             <button className="border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 hover:border-white/20 transition-colors">
-              <ArrowUpDown size={14} />
+              <ArrowUp size={14} />
             </button>
             <button className="border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 hover:border-white/20 transition-colors">
               <LayoutGrid size={14} />
             </button>
             <button className="border border-white/10 rounded-md p-1.5 text-white/40 hover:text-white/70 hover:border-white/20 transition-colors">
-              <Settings2 size={14} />
+              <Settings size={14} />
             </button>
           </div>
         </div>
